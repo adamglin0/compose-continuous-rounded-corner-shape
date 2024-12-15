@@ -2,7 +2,7 @@
 
 SuperRoundedShape for Compose Multiplatform.
 
-![Maven Central Version](https://img.shields.io/maven-central/v/com.adamglin/compose-shadow)
+![Maven Central Version](https://img.shields.io/maven-central/v/com.adamglin/compose-super-rounded-corner-shape)
 
 ---
 
@@ -21,7 +21,7 @@ implementation("com.adamglin:compose-super-rounded-corner-shape:$version")
 
 ## Platform support
 
-`compose-shadow` supports these platforms:
+`compose-super-rounded-corner-shape` supports these platforms:
 
 1. [x] Android
 2. [x] iOS
