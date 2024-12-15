@@ -26,7 +26,7 @@ implementation("com.adamglin:compose-super-rounded-corner-shape:$version")
 1. [x] Android
 2. [x] iOS
 3. [x] Desktop (JVM)
-4. [ ] JS/Wasm (Wait androidx-graphics-shapes support, now using RoundedCornerShape compatibility.)
+4. [x] JS/Wasm (now using RoundedCornerShape compatibility, waiting androidx-graphics-shapes support web target. )
 
 ## Use
 ```kotlin
