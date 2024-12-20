@@ -5,6 +5,7 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.center
+import androidx.compose.ui.geometry.toRect
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
@@ -41,6 +42,9 @@ class SuperRoundedShape(
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
+        if (size.minDimension == 0f) {
+            return Outline.Rectangle(size.toRect())
+        }
         val c0 = topStart.toPx(size, density)
         val c1 = topEnd.toPx(size, density)
         val c2 = bottomEnd.toPx(size, density)
