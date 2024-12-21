@@ -29,6 +29,22 @@ actual fun SuperRoundedCornerShape(value: Dp, smooth: Float): Shape {
     )
 }
 
+actual fun SuperRoundedCornerShape(
+    topStart: Dp,
+    topEnd: Dp,
+    bottomEnd: Dp,
+    bottomStart: Dp,
+    smooth: Float
+): Shape {
+    return SuperRoundedShape(
+        topStart = CornerSize(topStart),
+        topEnd = CornerSize(topEnd),
+        bottomEnd = CornerSize(bottomEnd),
+        bottomStart = CornerSize(bottomStart),
+        smooth = smooth
+    )
+}
+
 class SuperRoundedShape(
     val topStart: CornerSize,
     val topEnd: CornerSize,

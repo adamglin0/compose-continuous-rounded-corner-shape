@@ -10,3 +10,13 @@ actual fun SuperRoundedCornerShape(
 ): Shape {
     return RoundedCornerShape(value)
 }
+
+actual fun SuperRoundedCornerShape(
+    topStart: Dp,
+    topEnd: Dp,
+    bottomEnd: Dp,
+    bottomStart: Dp,
+    smooth: Float
+): Shape {
+    return RoundedCornerShape(topStart, topEnd, bottomStart, bottomEnd)
+}
