@@ -115,7 +115,7 @@ mavenPublishing {
     coordinates(
         groupId = "com.adamglin",
         artifactId = "compose-super-rounded-corner-shape",
-        version = "0.0.1-beta08"
+        version = "0.0.1-beta09"
     )
     pom {
         name.set("compose-super-rounded-corner-shape")
