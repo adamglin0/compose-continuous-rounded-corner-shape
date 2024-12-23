@@ -1,4 +1,6 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.compose.reload.ComposeHotRun
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -9,6 +11,7 @@ plugins {
     alias(libs.plugins.android.applcation)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose.hotReload)
 }
 
 kotlin {
@@ -19,7 +22,11 @@ kotlin {
         }
     }
 
-    jvm("desktop")
+    jvm("desktop"){
+        compilerOptions{
+            jvmTarget = JvmTarget.JVM_21
+        }
+    }
 
     listOf(
         iosArm64(),
@@ -121,14 +128,21 @@ android {
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
-
+        mainClass = "com.adamglin.composesuperroundedshape.MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "org.adamglin.sample"
             packageVersion = "1.0.0"
         }
     }
+}
+
+composeCompiler {
+    featureFlags.add(ComposeFeatureFlag.OptimizeNonSkippingGroups)
+}
+
+tasks.register<ComposeHotRun>("runHot") {
+    mainClass.set("com.adamglin.composesuperroundedshape.MainKt")
 }
 
 tasks.named("jsProductionExecutableCompileSync") {

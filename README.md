@@ -10,7 +10,7 @@ SuperRoundedShape for Compose Multiplatform.
 
 | `compose-super-rounded-shape` | CMP   | Kotlin |
 |-------------------------------|-------|--------|
-| 0.0.1-beta09                  | 1.7.1 | 2.1.0  |
+| 0.0.1-beta10                  | 1.7.1 | 2.1.0  |
 
 
 ## Installation

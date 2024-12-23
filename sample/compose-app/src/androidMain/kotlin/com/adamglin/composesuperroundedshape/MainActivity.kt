@@ -1,4 +1,4 @@
-package com.adamglin.composeshadow.app
+package com.adamglin.composesuperroundedshape
 
 import SampleApp
 import android.os.Bundle

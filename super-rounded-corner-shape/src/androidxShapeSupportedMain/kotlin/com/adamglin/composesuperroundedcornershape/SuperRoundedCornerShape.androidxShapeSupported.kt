@@ -1,6 +1,7 @@
 package com.adamglin.composesuperroundedcornershape
 
 import androidx.collection.FloatFloatPair
+import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
@@ -20,7 +21,7 @@ import kotlin.jvm.JvmOverloads
 import kotlin.math.max
 
 actual fun SuperRoundedCornerShape(value: Dp, smooth: Float): Shape {
-    return SuperRoundedShape(
+    return SuperRoundedCornerShape(
         topStart = CornerSize(value),
         topEnd = CornerSize(value),
         bottomEnd = CornerSize(value),
@@ -36,7 +37,7 @@ actual fun SuperRoundedCornerShape(
     bottomStart: Dp,
     smooth: Float
 ): Shape {
-    return SuperRoundedShape(
+    return SuperRoundedCornerShape(
         topStart = CornerSize(topStart),
         topEnd = CornerSize(topEnd),
         bottomEnd = CornerSize(bottomEnd),
@@ -45,44 +46,57 @@ actual fun SuperRoundedCornerShape(
     )
 }
 
-class SuperRoundedShape(
-    val topStart: CornerSize,
-    val topEnd: CornerSize,
-    val bottomEnd: CornerSize,
-    val bottomStart: CornerSize,
+class SuperRoundedCornerShape(
+    topStart: CornerSize,
+    topEnd: CornerSize,
+    bottomEnd: CornerSize,
+    bottomStart: CornerSize,
     val smooth: Float = .6f,
-) : Shape {
+) : CornerBasedShape(
+    topStart = topStart,
+    topEnd = topEnd,
+    bottomEnd = bottomEnd,
+    bottomStart = bottomStart
+) {
     private val path = Path()
+    override fun copy(
+        topStart: CornerSize,
+        topEnd: CornerSize,
+        bottomEnd: CornerSize,
+        bottomStart: CornerSize
+    ): CornerBasedShape {
+        TODO("Not yet implemented")
+    }
+
     override fun createOutline(
         size: Size,
-        layoutDirection: LayoutDirection,
-        density: Density
+        topStart: Float,
+        topEnd: Float,
+        bottomEnd: Float,
+        bottomStart: Float,
+        layoutDirection: LayoutDirection
     ): Outline {
         if (size.minDimension == 0f) {
             return Outline.Rectangle(size.toRect())
         }
-        val c0 = topStart.toPx(size, density)
-        val c1 = topEnd.toPx(size, density)
-        val c2 = bottomEnd.toPx(size, density)
-        val c3 = bottomStart.toPx(size, density)
         val polygon = RoundedPolygon.Companion.rectangle(
             width = size.width,
             height = size.height,
             perVertexRounding = listOf(
                 CornerRounding(
-                    c0,
+                    bottomEnd,
                     smoothing = smooth
                 ),
                 CornerRounding(
-                    c1,
+                    bottomStart,
                     smoothing = smooth
                 ),
                 CornerRounding(
-                    c2,
+                    topStart,
                     smoothing = smooth
                 ),
                 CornerRounding(
-                    c3,
+                    topEnd,
                     smoothing = smooth
                 )
             )
@@ -93,8 +107,8 @@ class SuperRoundedShape(
         }
         path.rewind()
         polygon.toPath(path)
-        val bounds = polygon.getBounds()
-        val maxDimension = max(bounds.width, bounds.height)
+//        val bounds = polygon.getBounds()
+//        val maxDimension = max(bounds.width, bounds.height)
         return Outline.Generic(path)
     }
 }
