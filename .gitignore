@@ -279,3 +279,5 @@ google-services.json
 *.swp
 
 UserInterfaceState.xcuserstate
+
+.idea/
