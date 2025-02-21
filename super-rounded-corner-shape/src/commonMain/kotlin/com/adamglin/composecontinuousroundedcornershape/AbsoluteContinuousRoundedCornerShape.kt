@@ -11,6 +11,64 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 
+
+/**
+ * A shape describing the rectangle with continuous rounded corners similar to the Apple system.
+ *
+ * This shape will not automatically mirror the corner sizes in [LayoutDirection.Rtl], use
+ * [ContinuousRoundedCornerShape] for the layout direction aware version of this shape.
+ *
+ * @param topLeft a size of the top left corner
+ * @param topRight a size of the top right corner
+ * @param bottomRight a size of the bottom right corner
+ * @param bottomLeft a size of the bottom left corner
+ * @param smooth a value to apply a smooth transition to the corners for a more seamless rounded effect.
+ *               When set to 0, the effect is the same as [AbsoluteRoundedCornerShape], with no smoothness applied.
+ *               The maximum value is 1, which provides the maximum smoothness for the rounded corners.
+ *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
+ */
+abstract class AbsoluteContinuousRoundedCornerShape(
+    topLeft: CornerSize,
+    topRight: CornerSize,
+    bottomRight: CornerSize,
+    bottomLeft: CornerSize,
+    val smooth: Float,
+) : CornerBasedShape(
+    topStart = topLeft,
+    topEnd = topRight,
+    bottomEnd = bottomRight,
+    bottomStart = bottomLeft
+) {
+    /**
+     * Creates a copy of this Shape with a new corner sizes or smooth size.
+     *
+     * @param topStart a size of the top start corner
+     * @param topEnd a size of the top end corner
+     * @param bottomEnd a size of the bottom end corner
+     * @param bottomStart a size of the bottom start corner
+     */
+    abstract fun copy(
+        topLeft: CornerSize = this.topStart,
+        topRight: CornerSize = this.topEnd,
+        bottomRight: CornerSize = this.bottomEnd,
+        bottomLeft: CornerSize = this.bottomStart,
+        smooth: Float = this.smooth,
+    ): AbsoluteContinuousRoundedCornerShape
+
+    override fun copy(
+        topLeft: CornerSize,
+        topRight: CornerSize,
+        bottomRight: CornerSize,
+        bottomLeft: CornerSize
+    ): AbsoluteContinuousRoundedCornerShape = copy(
+        topLeft = topLeft,
+        topRight = topRight,
+        bottomRight = bottomRight,
+        bottomLeft = bottomLeft,
+        smooth = smooth,
+    )
+}
+
 /**
  * A shape describing the rectangle with continuous rounded corners similar to the Apple system.
  *
