@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
  *               When set to 0, the effect is the same as [RoundedCornerShape], with no smoothness applied.
  *               The maximum value is 1, which provides the maximum smoothness for the rounded corners.
  */
-abstract class ContinuousRoundedCornerShape(
+internal abstract class BaseContinuousRoundedCornerShape internal constructor(
     topStart: CornerSize,
     topEnd: CornerSize,
     bottomEnd: CornerSize,
@@ -51,14 +51,14 @@ abstract class ContinuousRoundedCornerShape(
         bottomEnd: CornerSize = this.bottomEnd,
         bottomStart: CornerSize = this.bottomStart,
         smooth: Float = this.smooth,
-    ): ContinuousRoundedCornerShape
+    ): BaseContinuousRoundedCornerShape
 
     override fun copy(
         topStart: CornerSize,
         topEnd: CornerSize,
         bottomEnd: CornerSize,
         bottomStart: CornerSize
-    ): ContinuousRoundedCornerShape = copy(
+    ): BaseContinuousRoundedCornerShape = copy(
         topStart = topStart,
         topEnd = topEnd,
         bottomEnd = bottomEnd,
@@ -74,6 +74,32 @@ internal expect fun ContinuousRoundedCornerShapeImpl(
     bottomStart: CornerSize,
     smooth: Float,
 ): CornerBasedShape
+
+/**
+ * Creates [ContinuousRoundedCornerShape] with the same size applied for all four corners.
+ *
+ * @param topStart a size of the top start corner
+ * @param topEnd a size of the top end corner
+ * @param bottomEnd a size of the bottom end corner
+ * @param bottomStart a size of the bottom start corner
+ * @param smooth a value to apply a smooth transition to the corners for a more seamless rounded effect.
+ *               When set to 0, the effect is the same as [RoundedCornerShape], with no smoothness applied.
+ *               The maximum value is 1, which provides the maximum smoothness for the rounded corners.
+ *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
+ */
+fun ContinuousRoundedCornerShape(
+    topStart: CornerSize,
+    topEnd: CornerSize,
+    bottomEnd: CornerSize,
+    bottomStart: CornerSize,
+    @FloatRange(from = 0.0, 1.0) smooth: Float = 0.6f,
+) = ContinuousRoundedCornerShapeImpl(
+    topStart = topStart,
+    topEnd = topEnd,
+    bottomEnd = bottomEnd,
+    bottomStart = bottomStart,
+    smooth = smooth,
+)
 
 /**
  * Creates [ContinuousRoundedCornerShape] with the same size applied for all four corners.
@@ -100,8 +126,8 @@ fun ContinuousRoundedCornerShape(
  *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
  */
 fun ContinuousRoundedCornerShape(
-    size: Dp, @FloatRange(from = 0.1, to = 1.0)
-    smooth: Float = 0.6f
+    size: Dp,
+    @FloatRange(from = 0.1, to = 1.0) smooth: Float = 0.6f
 ) =
     ContinuousRoundedCornerShape(CornerSize(size), smooth)
 
@@ -115,8 +141,8 @@ fun ContinuousRoundedCornerShape(
  *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
  */
 fun ContinuousRoundedCornerShape(
-    size: Float, @FloatRange(from = 0.1, to = 1.0)
-    smooth: Float = 0.6f
+    size: Float,
+    @FloatRange(from = 0.1, to = 1.0) smooth: Float = 0.6f
 ) =
     ContinuousRoundedCornerShape(CornerSize(size), smooth)
 
@@ -130,8 +156,8 @@ fun ContinuousRoundedCornerShape(
  *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
  */
 fun ContinuousRoundedCornerShape(
-    percent: Int, @FloatRange(from = 0.1, to = 1.0)
-    smooth: Float = 0.6f
+    percent: Int,
+    @FloatRange(from = 0.1, to = 1.0) smooth: Float = 0.6f
 ) =
     ContinuousRoundedCornerShape(CornerSize(percent), smooth)
 
@@ -148,8 +174,7 @@ fun ContinuousRoundedCornerShape(
     topEnd: Dp = 0.dp,
     bottomEnd: Dp = 0.dp,
     bottomStart: Dp = 0.dp,
-    @FloatRange(from = 0.1, to = 1.0)
-    smooth: Float = 0.6f
+    @FloatRange(from = 0.1, to = 1.0) smooth: Float = 0.6f
 ) =
     ContinuousRoundedCornerShapeImpl(
         topStart = CornerSize(topStart),
