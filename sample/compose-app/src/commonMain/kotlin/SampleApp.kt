@@ -7,19 +7,23 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.adamglin.composecontinuousroundedcornershape.ContinuousRoundedCornerShape
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun SampleApp() {
+    var direction by remember { mutableStateOf(LayoutDirection.Ltr) }
     Box(
         modifier = Modifier.fillMaxSize().background(Color.White),
         contentAlignment = Alignment.Center,
@@ -37,68 +41,73 @@ fun SampleApp() {
             var smooth by remember { mutableStateOf(0.6f) }
 
             val maxShapeSize = 200.dp
-            Box(modifier = Modifier.background(Color.White)) {
-                Box(
-                    Modifier.size(maxShapeSize)
-                        .background(
-                            color = Color.Red,
-                            shape = RoundedCornerShape(
-                                topStartCorner,
-                                topEndCorner,
-                                bottomEndCorner,
-                                bottomStartCorner,
+            CompositionLocalProvider(
+                LocalLayoutDirection provides direction
+            ) {
+                Box(modifier = Modifier.background(Color.White)) {
+                    Box(
+                        Modifier.size(maxShapeSize)
+                            .background(
+                                color = Color.Red,
+                                shape = RoundedCornerShape(
+                                    topStartCorner,
+                                    topEndCorner,
+                                    bottomEndCorner,
+                                    bottomStartCorner,
+                                )
                             )
-                        )
-                )
-                Box(
-                    Modifier.size(maxShapeSize)
-                        .background(
-                            color = Color.Black,
-                            shape = ContinuousRoundedCornerShape(
-                                topStartCorner,
-                                topEndCorner,
-                                bottomEndCorner,
-                                bottomStartCorner,
-                                smooth
+                    )
+                    Box(
+                        Modifier.size(maxShapeSize)
+                            .background(
+                                color = Color.Black,
+                                shape = ContinuousRoundedCornerShape(
+                                    topStartCorner,
+                                    topEndCorner,
+                                    bottomEndCorner,
+                                    bottomStartCorner,
+                                    smooth,
+                                )
                             )
-                        )
-                )
-                DraggablePoint(
-                    cornerType = Alignment.TopStart,
-                    value = topStartCorner,
-                    valueRange = 0.dp..maxShapeSize,
-                    onValueChange = { topStartCorner = it },
-                    modifier = Modifier.align(Alignment.TopStart)
-                )
-                DraggablePoint(
-                    cornerType = Alignment.TopStart,
-                    value = topStartCorner,
-                    valueRange = 0.dp..maxShapeSize,
-                    onValueChange = { topStartCorner = it },
-                    modifier = Modifier.align(Alignment.TopStart)
-                )
-                DraggablePoint(
-                    cornerType = Alignment.TopEnd,
-                    value = topEndCorner,
-                    valueRange = 0.dp..maxShapeSize,
-                    onValueChange = { topEndCorner = it },
-                    modifier = Modifier.align(Alignment.TopEnd)
-                )
-                DraggablePoint(
-                    cornerType = Alignment.BottomEnd,
-                    value = bottomEndCorner,
-                    valueRange = 0.dp..maxShapeSize,
-                    onValueChange = { bottomEndCorner = it },
-                    modifier = Modifier.align(Alignment.BottomEnd)
-                )
-                DraggablePoint(
-                    cornerType = Alignment.BottomStart,
-                    value = bottomStartCorner,
-                    valueRange = 0.dp..maxShapeSize,
-                    onValueChange = { bottomStartCorner = it },
-                    modifier = Modifier.align(Alignment.BottomStart)
-                )
+                    )
+                    DraggablePoint(
+                        cornerType = Alignment.TopStart,
+                        value = topStartCorner,
+                        valueRange = 0.dp..maxShapeSize,
+                        onValueChange = { topStartCorner = it },
+                        modifier = Modifier.align(Alignment.TopStart)
+                    )
+                    DraggablePoint(
+                        cornerType = Alignment.TopStart,
+                        value = topStartCorner,
+                        valueRange = 0.dp..maxShapeSize,
+                        onValueChange = { topStartCorner = it },
+                        modifier = Modifier.align(Alignment.TopStart)
+                    )
+                    DraggablePoint(
+                        cornerType = Alignment.TopEnd,
+                        value = topEndCorner,
+                        valueRange = 0.dp..maxShapeSize,
+                        onValueChange = { topEndCorner = it },
+                        modifier = Modifier.align(Alignment.TopEnd)
+                    )
+                    DraggablePoint(
+                        cornerType = Alignment.BottomEnd,
+                        value = bottomEndCorner,
+                        valueRange = 0.dp..maxShapeSize,
+                        onValueChange = { bottomEndCorner = it },
+                        modifier = Modifier.align(Alignment.BottomEnd)
+                    )
+                    DraggablePoint(
+                        cornerType = Alignment.BottomStart,
+                        value = bottomStartCorner,
+                        valueRange = 0.dp..maxShapeSize,
+                        onValueChange = { bottomStartCorner = it },
+                        modifier = Modifier.align(Alignment.BottomStart)
+                    )
+                }
             }
+
 
             Column(
                 modifier = Modifier.padding(top = 40.dp)
@@ -123,6 +132,17 @@ fun SampleApp() {
                     value = smooth,
                     onValueChange = { smooth = it },
                     valueRange = 0f..1f
+                )
+                Text("LocalLayoutDirection : $direction")
+                Switch(
+                    checked = direction == LayoutDirection.Ltr,
+                    onCheckedChange = {
+                        if (it) {
+                            direction = LayoutDirection.Ltr
+                        } else {
+                            direction = LayoutDirection.Rtl
+                        }
+                    }
                 )
             }
 
