@@ -1,8 +1,9 @@
-@file:Suppress("FunctionName")
+@file:Suppress("FunctionName", "UNUSED")
 
 package com.adamglin.composecontinuousroundedcornershape
 
 import androidx.collection.FloatFloatPair
+import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
@@ -23,7 +24,7 @@ actual fun ContinuousRoundedCornerShapeImpl(
     bottomEnd: CornerSize,
     bottomStart: CornerSize,
     smooth: Float
-): ContinuousRoundedCornerShape = ContinuousRoundedCornerShapeAndroidxShapeImpl(
+): CornerBasedShape = ContinuousRoundedCornerShapeAndroidxShapeImpl(
     topStart = topStart,
     topEnd = topEnd,
     bottomEnd = bottomEnd,

@@ -1,4 +1,4 @@
-@file:Suppress("FunctionName")
+@file:Suppress("FunctionName", "UNUSED")
 
 package com.adamglin.composecontinuousroundedcornershape
 
@@ -73,7 +73,7 @@ internal expect fun ContinuousRoundedCornerShapeImpl(
     bottomEnd: CornerSize,
     bottomStart: CornerSize,
     smooth: Float,
-): ContinuousRoundedCornerShape
+): CornerBasedShape
 
 /**
  * Creates [ContinuousRoundedCornerShape] with the same size applied for all four corners.
