@@ -50,6 +50,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.ui)
+            implementation(libs.androidx.annotation)
         }
         val androidxShapeSupportedMain by creating {
             dependsOn(commonMain.get())
@@ -85,7 +86,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.adamglin.composesuperroundedcornershape"
+    namespace = "com.adamglin.composecontinuousroundedcornershape"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 

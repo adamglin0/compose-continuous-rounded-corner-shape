@@ -1,4 +1,6 @@
-package com.adamglin.composesuperroundedcornershape
+@file:Suppress("FunctionName", "UNUSED")
+
+package com.adamglin.composecontinuousroundedcornershape
 
 import androidx.collection.FloatFloatPair
 import androidx.compose.foundation.shape.CornerBasedShape
@@ -9,64 +11,42 @@ import androidx.compose.ui.geometry.center
 import androidx.compose.ui.geometry.toRect
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.graphics.shapes.CornerRounding
 import androidx.graphics.shapes.Cubic
 import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.rectangle
 import kotlin.jvm.JvmOverloads
-import kotlin.math.max
 
-actual fun SuperRoundedCornerShape(value: Dp, smooth: Float): Shape {
-    return SuperRoundedCornerShape(
-        topStart = CornerSize(value),
-        topEnd = CornerSize(value),
-        bottomEnd = CornerSize(value),
-        bottomStart = CornerSize(value),
-        smooth = smooth
-    )
-}
-
-actual fun SuperRoundedCornerShape(
-    topStart: Dp,
-    topEnd: Dp,
-    bottomEnd: Dp,
-    bottomStart: Dp,
-    smooth: Float
-): Shape {
-    return SuperRoundedCornerShape(
-        topStart = CornerSize(topStart),
-        topEnd = CornerSize(topEnd),
-        bottomEnd = CornerSize(bottomEnd),
-        bottomStart = CornerSize(bottomStart),
-        smooth = smooth
-    )
-}
-
-class SuperRoundedCornerShape(
+actual fun ContinuousRoundedCornerShapeImpl(
     topStart: CornerSize,
     topEnd: CornerSize,
     bottomEnd: CornerSize,
     bottomStart: CornerSize,
-    val smooth: Float = .6f,
-) : CornerBasedShape(
+    smooth: Float
+): CornerBasedShape = ContinuousRoundedCornerShapeAndroidxShapeImpl(
     topStart = topStart,
     topEnd = topEnd,
     bottomEnd = bottomEnd,
-    bottomStart = bottomStart
+    bottomStart = bottomStart,
+    smooth = smooth
+)
+
+
+private class ContinuousRoundedCornerShapeAndroidxShapeImpl(
+    topStart: CornerSize,
+    topEnd: CornerSize,
+    bottomEnd: CornerSize,
+    bottomStart: CornerSize,
+    smooth: Float,
+) : ContinuousRoundedCornerShape(
+    topStart = topStart,
+    topEnd = topEnd,
+    bottomEnd = bottomEnd,
+    bottomStart = bottomStart,
+    smooth = smooth
 ) {
     private val path = Path()
-    override fun copy(
-        topStart: CornerSize,
-        topEnd: CornerSize,
-        bottomEnd: CornerSize,
-        bottomStart: CornerSize
-    ): CornerBasedShape {
-        TODO("Not yet implemented")
-    }
 
     override fun createOutline(
         size: Size,
@@ -111,8 +91,48 @@ class SuperRoundedCornerShape(
 //        val maxDimension = max(bounds.width, bounds.height)
         return Outline.Generic(path)
     }
-}
 
+    override fun copy(
+        topStart: CornerSize,
+        topEnd: CornerSize,
+        bottomEnd: CornerSize,
+        bottomStart: CornerSize,
+        smooth: Float,
+    ) = ContinuousRoundedCornerShapeAndroidxShapeImpl(
+        topStart = topStart,
+        topEnd = topEnd,
+        bottomEnd = bottomEnd,
+        bottomStart = bottomStart,
+        smooth = smooth
+    )
+
+    override fun toString(): String {
+        return "ContinuousRoundedCornerShapeAndroidxShapeImpl(topStart = $topStart, topEnd = $topEnd, bottomEnd = " +
+                "$bottomEnd, bottomStart = $bottomStart, smooth = $smooth)"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is ContinuousRoundedCornerShapeAndroidxShapeImpl) return false
+
+        if (topStart != other.topStart) return false
+        if (topEnd != other.topEnd) return false
+        if (bottomEnd != other.bottomEnd) return false
+        if (bottomStart != other.bottomStart) return false
+        if (smooth != other.smooth) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = topStart.hashCode()
+        result = 31 * result + topEnd.hashCode()
+        result = 31 * result + bottomEnd.hashCode()
+        result = 31 * result + bottomStart.hashCode()
+        result = 31 * result + smooth.hashCode()
+        return result
+    }
+}
 
 /**
  * Gets a [Path] representation for a [RoundedPolygon] shape, which can be used to draw the
