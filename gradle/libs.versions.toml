@@ -21,7 +21,7 @@ composeMultiplatform = "1.7.3"
 colorpicker = "1.1.2"
 composeHotReload = "1.0.0-dev-59"
 #other
-dokka = "2.1.0"
+dokka = "2.0.0"
 mavenPublish = "0.30.0"
 kotlinxCoroutines = "1.10.1"
 [libraries]
