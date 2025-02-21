@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
  *               The maximum value is 1, which provides the maximum smoothness for the rounded corners.
  *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
  */
-abstract class AbsoluteContinuousRoundedCornerShape(
+abstract class BaseAbsoluteContinuousRoundedCornerShape(
     topLeft: CornerSize,
     topRight: CornerSize,
     bottomRight: CornerSize,
@@ -53,18 +53,18 @@ abstract class AbsoluteContinuousRoundedCornerShape(
         bottomRight: CornerSize = this.bottomEnd,
         bottomLeft: CornerSize = this.bottomStart,
         smooth: Float = this.smooth,
-    ): AbsoluteContinuousRoundedCornerShape
+    ): BaseAbsoluteContinuousRoundedCornerShape
 
     override fun copy(
-        topLeft: CornerSize,
-        topRight: CornerSize,
-        bottomRight: CornerSize,
-        bottomLeft: CornerSize
-    ): AbsoluteContinuousRoundedCornerShape = copy(
-        topLeft = topLeft,
-        topRight = topRight,
-        bottomRight = bottomRight,
-        bottomLeft = bottomLeft,
+        topStart: CornerSize,
+        topEnd: CornerSize,
+        bottomEnd: CornerSize,
+        bottomStart: CornerSize
+    ): BaseAbsoluteContinuousRoundedCornerShape = copy(
+        topLeft = topStart,
+        topRight = topEnd,
+        bottomRight = bottomEnd,
+        bottomLeft = bottomStart,
         smooth = smooth,
     )
 }
@@ -93,6 +93,35 @@ internal expect fun AbsoluteContinuousRoundedCornerShapeImpl(
 ): CornerBasedShape
 
 /**
+ * A shape describing the rectangle with continuous rounded corners similar to the Apple system.
+ *
+ * This shape will not automatically mirror the corner sizes in [LayoutDirection.Rtl], use
+ * [ContinuousRoundedCornerShape] for the layout direction aware version of this shape.
+ *
+ * @param topLeft a size of the top left corner
+ * @param topRight a size of the top right corner
+ * @param bottomRight a size of the bottom right corner
+ * @param bottomLeft a size of the bottom left corner
+ * @param smooth a value to apply a smooth transition to the corners for a more seamless rounded effect.
+ *               When set to 0, the effect is the same as [AbsoluteRoundedCornerShape], with no smoothness applied.
+ *               The maximum value is 1, which provides the maximum smoothness for the rounded corners.
+ *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
+ */
+fun AbsoluteContinuousRoundedCornerShape(
+    topLeft: CornerSize,
+    topRight: CornerSize,
+    bottomRight: CornerSize,
+    bottomLeft: CornerSize,
+    smooth: Float,
+) = AbsoluteContinuousRoundedCornerShapeImpl(
+    topLeft = topLeft,
+    topRight = topRight,
+    bottomRight = bottomRight,
+    bottomLeft = bottomLeft,
+    smooth = smooth,
+)
+
+/**
  * Creates [AbsoluteContinuousRoundedCornerShape] with the same size applied for all four corners.
  *
  * @param corner [CornerSize] to apply.
@@ -117,8 +146,8 @@ fun AbsoluteContinuousRoundedCornerShape(
  *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
  */
 fun AbsoluteContinuousRoundedCornerShape(
-    size: Dp, @FloatRange(from = 0.1, to = 1.0)
-    smooth: Float = 0.6f
+    size: Dp,
+    @FloatRange(from = 0.1, to = 1.0) smooth: Float = 0.6f
 ) =
     AbsoluteContinuousRoundedCornerShape(CornerSize(size), smooth)
 
@@ -132,8 +161,8 @@ fun AbsoluteContinuousRoundedCornerShape(
  *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
  */
 fun AbsoluteContinuousRoundedCornerShape(
-    size: Float, @FloatRange(from = 0.1, to = 1.0)
-    smooth: Float = 0.6f
+    size: Float,
+    @FloatRange(from = 0.1, to = 1.0) smooth: Float = 0.6f
 ) =
     AbsoluteContinuousRoundedCornerShape(CornerSize(size), smooth)
 
@@ -147,8 +176,8 @@ fun AbsoluteContinuousRoundedCornerShape(
  *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
  */
 fun AbsoluteContinuousRoundedCornerShape(
-    percent: Int, @FloatRange(from = 0.1, to = 1.0)
-    smooth: Float = 0.6f
+    percent: Int,
+    @FloatRange(from = 0.1, to = 1.0) smooth: Float = 0.6f
 ) =
     AbsoluteContinuousRoundedCornerShape(CornerSize(percent), smooth)
 

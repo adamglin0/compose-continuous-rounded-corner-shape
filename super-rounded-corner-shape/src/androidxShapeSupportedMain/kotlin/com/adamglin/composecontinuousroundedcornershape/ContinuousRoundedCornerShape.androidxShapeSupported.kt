@@ -39,7 +39,7 @@ private class ContinuousRoundedCornerShapeAndroidxShapeImpl(
     bottomEnd: CornerSize,
     bottomStart: CornerSize,
     smooth: Float,
-) : ContinuousRoundedCornerShape(
+) : BaseContinuousRoundedCornerShape(
     topStart = topStart,
     topEnd = topEnd,
     bottomEnd = bottomEnd,
