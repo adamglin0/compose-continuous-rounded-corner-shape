@@ -115,11 +115,11 @@ android {
 mavenPublishing {
     coordinates(
         groupId = "com.adamglin",
-        artifactId = "compose-super-rounded-corner-shape",
+        artifactId = "compose-continuous-rounded-corner-shape",
         version = "1.0.0"
     )
     pom {
-        name.set("compose-super-rounded-corner-shape")
+        name.set("compose-continuous-rounded-corner-shape")
         description.set("draw a continuous roundedCornerShape in compose multiplatform.")
         url.set("https://github.com/adamglin0/compose-continous-rounded-corner-shape")
         licenses {
