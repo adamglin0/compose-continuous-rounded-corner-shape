@@ -8,9 +8,9 @@ Provide the ability in **Compose Multiplatform** to create **ContinuousRoundedCo
 
 ## Versions
 
-| `compose-continuous-rounded-shape` | CMP   | Kotlin |
-|-------------------------------|-------|--------|
-| 0.0.1-beta10                  | 1.7.1 | 2.1.0  |
+| `compose-continuous-rounded-shape` | CMP   | Kotlin    |
+|------------------------------------|-------|-----------|
+| 1.0.0                              | 1.7.3 | 2.1.20-RC |
 
 
 ## Installation
@@ -41,23 +41,16 @@ ContinuousRoundedCornerShape(50.dp, smooth = 1f)
 
 smooth support from 0f to 1f, the design of ios is 0.6f.
 
+e.g.
+
 ```kotlin
-Box {
-    Box(
-        modifier = Modifier
-            .padding(20.dp)
-            .size(300.dp)
-            .clip(RoundedCornerShape(50.dp)) // .clip(RoundedCornerShape(50.dp,50.dp,50.dp,50.dp,0.6f))
-            .background(Color.Black)
-    )
-    Box(
-        modifier = Modifier
-            .padding(20.dp)
-            .size(300.dp)
-            .clip(ContinuousRoundedCornerShape(50.dp, smooth = 1f))
-            .background(Color.Red)
-    )
-}
+Box(
+    modifier = Modifier
+        .padding(20.dp)
+        .size(300.dp)
+        .clip(ContinuousRoundedCornerShape(50.dp, smooth = 1f))
+        .background(Color.Red)
+)
 ```
 
 ![img.png](docs/images/readme.png)

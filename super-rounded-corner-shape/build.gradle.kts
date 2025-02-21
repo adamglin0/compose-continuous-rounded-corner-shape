@@ -116,12 +116,12 @@ mavenPublishing {
     coordinates(
         groupId = "com.adamglin",
         artifactId = "compose-super-rounded-corner-shape",
-        version = "0.0.1-beta10"
+        version = "1.0.0"
     )
     pom {
         name.set("compose-super-rounded-corner-shape")
-        description.set("draw a smooth roundedCornerShape in compose multiplatform.")
-        url.set("https://github.com/adamglin0/compose-super-rounded-corner-shape")
+        description.set("draw a continuous roundedCornerShape in compose multiplatform.")
+        url.set("https://github.com/adamglin0/compose-continous-rounded-corner-shape")
         licenses {
             license {
                 name.set("MIT")
@@ -136,11 +136,11 @@ mavenPublishing {
         }
         issueManagement {
             system.set("Github")
-            url.set("https://github.com/adamglin0/compose-super-rounded-corner-shape/issues")
+            url.set("https://github.com/adamglin0/compose-continous-rounded-corner-shape/issues")
         }
         scm {
-            connection.set("https://github.com/adamglin0/compose-super-rounded-corner-shape.git")
-            url.set("https://github.com/adamglin0/compose-super-rounded-corner-shape")
+            connection.set("https://github.com/adamglin0/compose-continous-rounded-corner-shape.git")
+            url.set("https://github.com/adamglin0/compose-continous-rounded-corner-shape")
         }
     }
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
