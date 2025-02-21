@@ -1,4 +1,4 @@
-# Compose SuperRoundedCornerShape
+# Compose ContinuousRoundedCornerShape
 
 SuperRoundedShape for Compose Multiplatform.
 
@@ -30,7 +30,7 @@ implementation("com.adamglin:compose-super-rounded-corner-shape:$version")
 
 ## Use
 ```kotlin
-SuperRoundedCornerShape(50.dp, smooth = 1f)
+ContinuousRoundedCornerShape(50.dp, smooth = 1f)
 ```
 
 smooth support from 0f to 1f, the design of ios is 0.6f.
@@ -48,7 +48,7 @@ Box {
         modifier = Modifier
             .padding(20.dp)
             .size(300.dp)
-            .clip(SuperRoundedCornerShape(50.dp, smooth = 1f))
+            .clip(ContinuousRoundedCornerShape(50.dp, smooth = 1f))
             .background(Color.Red)
     )
 }
