@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import com.adamglin.composecontinuousroundedcornershape.AbsoluteContinuousRoundedCornerShape
 import com.adamglin.composecontinuousroundedcornershape.ContinuousRoundedCornerShape
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -61,7 +62,7 @@ fun SampleApp() {
                         Modifier.size(maxShapeSize)
                             .background(
                                 color = Color.Black,
-                                shape = ContinuousRoundedCornerShape(
+                                shape = AbsoluteContinuousRoundedCornerShape(
                                     topStartCorner,
                                     topEndCorner,
                                     bottomEndCorner,

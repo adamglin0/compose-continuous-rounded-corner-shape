@@ -5,13 +5,12 @@ package com.adamglin.composecontinuousroundedcornershape
 import androidx.collection.FloatFloatPair
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.geometry.center
-import androidx.compose.ui.geometry.toRect
+import androidx.compose.ui.geometry.*
+import androidx.compose.ui.graphics.Matrix
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.LayoutDirection.Ltr
 import androidx.graphics.shapes.CornerRounding
 import androidx.graphics.shapes.Cubic
 import androidx.graphics.shapes.RoundedPolygon
@@ -56,40 +55,44 @@ private class ContinuousRoundedCornerShapeAndroidxShapeImpl(
         bottomStart: Float,
         layoutDirection: LayoutDirection
     ): Outline {
-        if (size.minDimension == 0f) {
-            return Outline.Rectangle(size.toRect())
-        }
-        val polygon = RoundedPolygon.Companion.rectangle(
-            width = size.width,
-            height = size.height,
-            perVertexRounding = listOf(
-                CornerRounding(
-                    bottomEnd,
-                    smoothing = smooth
-                ),
-                CornerRounding(
-                    bottomStart,
-                    smoothing = smooth
-                ),
-                CornerRounding(
-                    topStart,
-                    smoothing = smooth
-                ),
-                CornerRounding(
-                    topEnd,
-                    smoothing = smooth
+        return when {
+            size.minDimension == 0f -> Outline.Rectangle(size.toRect())
+            smooth == 0f -> Outline.Rounded(
+                RoundRect(
+                    rect = size.toRect(),
+                    topLeft = CornerRadius(if (layoutDirection == Ltr) topStart else topEnd),
+                    topRight = CornerRadius(if (layoutDirection == Ltr) topEnd else topStart),
+                    bottomRight =
+                        CornerRadius(if (layoutDirection == Ltr) bottomEnd else bottomStart),
+                    bottomLeft =
+                        CornerRadius(if (layoutDirection == Ltr) bottomStart else bottomEnd)
                 )
             )
-        ).transformed { ox, oy ->
-            FloatFloatPair(
-                ox + size.center.x, oy + size.center.y
-            )
+
+            else -> {
+                val (adjustedTopStart, adjustedTopEnd, adjustedBottomEnd, adjustedBottomStart) =
+                    if (layoutDirection == LayoutDirection.Ltr) {
+                        listOf(topStart, topEnd, bottomEnd, bottomStart)
+                    } else {
+                        listOf(topEnd, topStart, bottomStart, bottomEnd)
+                    }
+                val polygon = RoundedPolygon.rectangle(
+                    width = size.width,
+                    height = size.height,
+                    perVertexRounding = listOf(
+                        CornerRounding(adjustedBottomEnd, smooth),
+                        CornerRounding(adjustedBottomStart, smooth),
+                        CornerRounding(adjustedTopStart, smooth),
+                        CornerRounding(adjustedTopEnd, smooth)
+                    )
+                ).transformed { ox, oy ->
+                    FloatFloatPair(ox + size.center.x, oy + size.center.y)
+                }
+                path.rewind()
+                polygon.toPath(path)
+                return Outline.Generic(path)
+            }
         }
-        path.rewind()
-        polygon.toPath(path)
-//        val bounds = polygon.getBounds()
-//        val maxDimension = max(bounds.width, bounds.height)
-        return Outline.Generic(path)
     }
 
     override fun copy(
