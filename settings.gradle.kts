@@ -1,6 +1,5 @@
 pluginManagement {
     repositories {
-        maven("https://packages.jetbrains.team/maven/p/firework/dev")
         google()
         mavenCentral()
         gradlePluginPortal()
@@ -10,7 +9,6 @@ pluginManagement {
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositories {
-        maven("https://packages.jetbrains.team/maven/p/firework/dev")
         google()
         mavenCentral()
     }
@@ -18,5 +16,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "compose-super-rounded-corner-shape"
 include(":super-rounded-corner-shape")
-// apps
+// sample apps
 include(":sample:compose-app")
