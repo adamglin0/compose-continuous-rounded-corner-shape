@@ -10,6 +10,7 @@ Provide the ability in **Compose Multiplatform** to create **ContinuousRoundedCo
 
 | `compose-continuous-rounded-shape` | CMP   | Kotlin    |
 |------------------------------------|-------|-----------|
+| 1.0.1                              | 1.8.1 | 2.1.21    |
 | 1.0.0                              | 1.7.3 | 2.1.20-RC |
 
 
