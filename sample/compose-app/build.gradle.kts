@@ -1,5 +1,4 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.compose.reload.ComposeHotRun
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -22,8 +21,8 @@ kotlin {
         }
     }
 
-    jvm("desktop"){
-        compilerOptions{
+    jvm("desktop") {
+        compilerOptions {
             jvmTarget = JvmTarget.JVM_21
         }
     }
@@ -40,7 +39,7 @@ kotlin {
     }
 
     js(IR) {
-        moduleName = "sharedApp"
+        outputModuleName = "sharedApp"
         browser {
             commonWebpackConfig {
                 outputFileName = "sharedApp.js"
@@ -51,7 +50,7 @@ kotlin {
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "sharedApp"
+        outputModuleName = "sharedApp"
         browser {
             commonWebpackConfig {
                 outputFileName = "sharedApp.js"
@@ -139,10 +138,6 @@ compose.desktop {
 
 composeCompiler {
     featureFlags.add(ComposeFeatureFlag.OptimizeNonSkippingGroups)
-}
-
-tasks.register<ComposeHotRun>("runHot") {
-    mainClass.set("com.adamglin.composesuperroundedshape.MainKt")
 }
 
 tasks.named("jsProductionExecutableCompileSync") {
