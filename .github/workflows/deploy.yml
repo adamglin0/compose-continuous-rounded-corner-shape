@@ -1,0 +1,35 @@
+name: Deploy To Maven Center
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+      - name: publish to maven center
+        run: mise run publish
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          body: |
+            ## 🚀 What's New
+            
+            This release has been automatically published to Maven Central.
+            
+            ### Maven Dependency
+            ```kotlin
+            implementation("com.adamglin:compose-continuous-rounded-corner-shape:${{ github.ref_name }}")
+            ```

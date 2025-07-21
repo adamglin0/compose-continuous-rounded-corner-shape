@@ -281,3 +281,5 @@ google-services.json
 UserInterfaceState.xcuserstate
 
 .idea/
+
+*.local.*

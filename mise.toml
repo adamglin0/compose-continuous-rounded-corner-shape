@@ -1,0 +1,8 @@
+[tools]
+gradle = "8.11.1"
+java = "zulu-21"
+
+[tasks.publish]
+dir = "super-rounded-corner-shape"
+run = "gradle publishAndReleaseToMavenCentral --no-configuration-cache"
+
