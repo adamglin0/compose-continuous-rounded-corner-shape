@@ -19,7 +19,7 @@ binaryCompatibilityValidator = "0.17.0"
 #compose
 composeMultiplatform = "1.8.1"
 colorpicker = "1.1.2"
-composeHotReload = "1.0.0-alpha10"
+composeHotReload = "1.0.0-beta04"
 #other
 dokka = "2.0.0"
 mavenPublish = "0.31.0"
