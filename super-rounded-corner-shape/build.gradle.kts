@@ -116,7 +116,7 @@ mavenPublishing {
     coordinates(
         groupId = "com.adamglin",
         artifactId = "compose-continuous-rounded-corner-shape",
-        version = "1.0.1"
+        version = "1.0.2"
     )
     pom {
         name.set("compose-continuous-rounded-corner-shape")
