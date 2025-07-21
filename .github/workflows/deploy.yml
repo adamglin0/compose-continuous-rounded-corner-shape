@@ -7,7 +7,7 @@ on:
       - 'v*'
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
