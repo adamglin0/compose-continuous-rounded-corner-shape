@@ -15,7 +15,7 @@ androidxGraphicsPath = "1.0.1"
 androidxCollection = "1.5.0"
 #kotlin
 kotlin = "2.2.0"
-binaryCompatibilityValidator = "0.18.0"
+binaryCompatibilityValidator = "0.18.1"
 #compose
 composeMultiplatform = "1.8.2"
 colorpicker = "1.1.2"
