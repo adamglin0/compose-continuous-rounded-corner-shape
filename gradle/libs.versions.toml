@@ -22,7 +22,7 @@ colorpicker = "1.1.2"
 composeHotReload = "1.0.0-beta03"
 #other
 dokka = "2.0.0"
-mavenPublish = "0.31.0"
+mavenPublish = "0.34.0"
 kotlinxCoroutines = "1.10.2"
 [libraries]
 #androidx
