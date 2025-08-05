@@ -17,7 +17,6 @@ kotlin {
     androidLibrary {
         namespace = "com.adamglin.composecontinuousroundedcornershape"
         compileSdk = libs.versions.androidCompileSdk.get().toInt()
-//        sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
         minSdk = libs.versions.androidMinSdk.get().toInt()
         lint.targetSdk = libs.versions.androidTargetSdk.get().toInt()
