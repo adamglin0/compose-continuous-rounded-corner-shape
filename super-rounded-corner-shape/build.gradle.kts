@@ -14,10 +14,17 @@ plugins {
 }
 
 kotlin {
-    androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+    androidLibrary {
+        namespace = "com.adamglin.composecontinuousroundedcornershape"
+        compileSdk = libs.versions.androidCompileSdk.get().toInt()
+
+        minSdk = libs.versions.androidMinSdk.get().toInt()
+        lint.targetSdk = libs.versions.androidTargetSdk.get().toInt()
+
+        compilations.configureEach {
+            compilerOptions.configure {
+                jvmTarget.set(JvmTarget.JVM_11)
+            }
         }
     }
 
@@ -84,33 +91,6 @@ kotlin {
         }
     }
 }
-
-android {
-    namespace = "com.adamglin.composecontinuousroundedcornershape"
-    compileSdk = libs.versions.androidCompileSdk.get().toInt()
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-
-    defaultConfig {
-        minSdk = libs.versions.androidMinSdk.get().toInt()
-        lint.targetSdk = libs.versions.androidTargetSdk.get().toInt()
-    }
-
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    buildFeatures {
-        compose = true
-    }
-}
-
 
 mavenPublishing {
     coordinates(
