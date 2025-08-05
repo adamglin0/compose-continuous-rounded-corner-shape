@@ -1,8 +1,11 @@
 [tools]
-gradle = "8.11.1"
+gradle = "9.0.0"
 java = "zulu-21"
 
 [tasks.publish]
 dir = "super-rounded-corner-shape"
 run = "gradle publishAndReleaseToMavenCentral --no-configuration-cache"
 
+[tasks.publish_to_local]
+dir = "super-rounded-corner-shape"
+run = "gradle publishToMavenLocal --no-configuration-cache"
