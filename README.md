@@ -1,10 +1,16 @@
+<div align="center">
+<h1>
+<a href="https://github.com/adamglin0/compose-continuous-rounded-corner-shape" >
+  <img alt="The icon of zithian" src="docs/images/logo.png" width="520" title="compose-continuous-rounded-corner-shape"/>
+</a>
+</h1>
+<img alt="Maven Central Version" src="https://img.shields.io/maven-central/v/com.adamglin/compose-continuous-rounded-corner-shape">
+
 # Compose ContinuousRoundedCornerShape
 
 Provide the ability in **Compose Multiplatform** to create **ContinuousRoundedCornerShape**, which is a smooth rounded corner.
 
-![Maven Central Version](https://img.shields.io/maven-central/v/com.adamglin/compose-continuous-rounded-corner-shape)
-
----
+</div>
 
 ## Versions
 
