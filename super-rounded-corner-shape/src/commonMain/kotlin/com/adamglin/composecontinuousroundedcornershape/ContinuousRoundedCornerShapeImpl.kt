@@ -1,38 +1,18 @@
-@file:Suppress("FunctionName", "UNUSED")
-
 package com.adamglin.composecontinuousroundedcornershape
 
 import androidx.collection.FloatFloatPair
-import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.ui.geometry.*
-import androidx.compose.ui.graphics.Matrix
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.unit.LayoutDirection.Ltr
 import androidx.graphics.shapes.CornerRounding
 import androidx.graphics.shapes.Cubic
 import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.rectangle
 import kotlin.jvm.JvmOverloads
 
-actual fun ContinuousRoundedCornerShapeImpl(
-    topStart: CornerSize,
-    topEnd: CornerSize,
-    bottomEnd: CornerSize,
-    bottomStart: CornerSize,
-    smooth: Float
-): CornerBasedShape = ContinuousRoundedCornerShapeAndroidxShapeImpl(
-    topStart = topStart,
-    topEnd = topEnd,
-    bottomEnd = bottomEnd,
-    bottomStart = bottomStart,
-    smooth = smooth
-)
-
-
-private class ContinuousRoundedCornerShapeAndroidxShapeImpl(
+class ContinuousRoundedCornerShapeImpl(
     topStart: CornerSize,
     topEnd: CornerSize,
     bottomEnd: CornerSize,
@@ -60,12 +40,12 @@ private class ContinuousRoundedCornerShapeAndroidxShapeImpl(
             smooth == 0f -> Outline.Rounded(
                 RoundRect(
                     rect = size.toRect(),
-                    topLeft = CornerRadius(if (layoutDirection == Ltr) topStart else topEnd),
-                    topRight = CornerRadius(if (layoutDirection == Ltr) topEnd else topStart),
+                    topLeft = CornerRadius(if (layoutDirection == LayoutDirection.Ltr) topStart else topEnd),
+                    topRight = CornerRadius(if (layoutDirection == LayoutDirection.Ltr) topEnd else topStart),
                     bottomRight =
-                        CornerRadius(if (layoutDirection == Ltr) bottomEnd else bottomStart),
+                        CornerRadius(if (layoutDirection == LayoutDirection.Ltr) bottomEnd else bottomStart),
                     bottomLeft =
-                        CornerRadius(if (layoutDirection == Ltr) bottomStart else bottomEnd)
+                        CornerRadius(if (layoutDirection == LayoutDirection.Ltr) bottomStart else bottomEnd)
                 )
             )
 
@@ -101,7 +81,7 @@ private class ContinuousRoundedCornerShapeAndroidxShapeImpl(
         bottomEnd: CornerSize,
         bottomStart: CornerSize,
         smooth: Float,
-    ) = ContinuousRoundedCornerShapeAndroidxShapeImpl(
+    ) = ContinuousRoundedCornerShapeImpl(
         topStart = topStart,
         topEnd = topEnd,
         bottomEnd = bottomEnd,
@@ -112,28 +92,6 @@ private class ContinuousRoundedCornerShapeAndroidxShapeImpl(
     override fun toString(): String {
         return "ContinuousRoundedCornerShapeAndroidxShapeImpl(topStart = $topStart, topEnd = $topEnd, bottomEnd = " +
                 "$bottomEnd, bottomStart = $bottomStart, smooth = $smooth)"
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is ContinuousRoundedCornerShapeAndroidxShapeImpl) return false
-
-        if (topStart != other.topStart) return false
-        if (topEnd != other.topEnd) return false
-        if (bottomEnd != other.bottomEnd) return false
-        if (bottomStart != other.bottomStart) return false
-        if (smooth != other.smooth) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = topStart.hashCode()
-        result = 31 * result + topEnd.hashCode()
-        result = 31 * result + bottomEnd.hashCode()
-        result = 31 * result + bottomStart.hashCode()
-        result = 31 * result + smooth.hashCode()
-        return result
     }
 }
 
@@ -169,5 +127,3 @@ private fun pathFromCubicList(
     }
     path.close()
 }
-
-fun RoundedPolygon.getBounds() = calculateBounds().let { Rect(it[0], it[1], it[2], it[3]) }
