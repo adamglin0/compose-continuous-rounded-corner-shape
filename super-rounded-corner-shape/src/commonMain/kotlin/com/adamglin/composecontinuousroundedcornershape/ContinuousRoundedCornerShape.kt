@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
  *               When set to 0, the effect is the same as [RoundedCornerShape], with no smoothness applied.
  *               The maximum value is 1, which provides the maximum smoothness for the rounded corners.
  */
-internal abstract class BaseContinuousRoundedCornerShape internal constructor(
+abstract class BaseContinuousRoundedCornerShape internal constructor(
     topStart: CornerSize,
     topEnd: CornerSize,
     bottomEnd: CornerSize,
@@ -66,14 +66,6 @@ internal abstract class BaseContinuousRoundedCornerShape internal constructor(
         smooth = smooth,
     )
 }
-
-internal expect fun ContinuousRoundedCornerShapeImpl(
-    topStart: CornerSize,
-    topEnd: CornerSize,
-    bottomEnd: CornerSize,
-    bottomStart: CornerSize,
-    smooth: Float,
-): CornerBasedShape
 
 /**
  * Creates [ContinuousRoundedCornerShape] with the same size applied for all four corners.

@@ -69,28 +69,7 @@ abstract class BaseAbsoluteContinuousRoundedCornerShape(
     )
 }
 
-/**
- * A shape describing the rectangle with continuous rounded corners similar to the Apple system.
- *
- * This shape will not automatically mirror the corner sizes in [LayoutDirection.Rtl], use
- * [ContinuousRoundedCornerShape] for the layout direction aware version of this shape.
- *
- * @param topLeft a size of the top left corner
- * @param topRight a size of the top right corner
- * @param bottomRight a size of the bottom right corner
- * @param bottomLeft a size of the bottom left corner
- * @param smooth a value to apply a smooth transition to the corners for a more seamless rounded effect.
- *               When set to 0, the effect is the same as [AbsoluteRoundedCornerShape], with no smoothness applied.
- *               The maximum value is 1, which provides the maximum smoothness for the rounded corners.
- *               The default value is 00.6f, which is commonly used in iOS-like designs to achieve a smooth yet subtle effect.
- */
-internal expect fun AbsoluteContinuousRoundedCornerShapeImpl(
-    topLeft: CornerSize,
-    topRight: CornerSize,
-    bottomRight: CornerSize,
-    bottomLeft: CornerSize,
-    smooth: Float,
-): CornerBasedShape
+
 
 /**
  * A shape describing the rectangle with continuous rounded corners similar to the Apple system.
