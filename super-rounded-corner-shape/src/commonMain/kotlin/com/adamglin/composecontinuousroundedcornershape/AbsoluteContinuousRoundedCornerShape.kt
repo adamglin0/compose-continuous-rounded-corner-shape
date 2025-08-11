@@ -67,8 +67,29 @@ abstract class BaseAbsoluteContinuousRoundedCornerShape(
         bottomLeft = bottomStart,
         smooth = smooth,
     )
-}
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is AbsoluteContinuousRoundedCornerShapeImpl) return false
+
+        if (topStart != other.topStart) return false
+        if (topEnd != other.topEnd) return false
+        if (bottomEnd != other.bottomEnd) return false
+        if (bottomStart != other.bottomStart) return false
+        if (smooth != other.smooth) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = topStart.hashCode()
+        result = 31 * result + topEnd.hashCode()
+        result = 31 * result + bottomEnd.hashCode()
+        result = 31 * result + bottomStart.hashCode()
+        result = 31 * result + smooth.hashCode()
+        return result
+    }
+}
 
 
 /**
