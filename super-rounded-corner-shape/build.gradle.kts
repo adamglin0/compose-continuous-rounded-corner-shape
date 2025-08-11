@@ -48,44 +48,12 @@ kotlin {
         browser()
     }
 
-    applyDefaultHierarchyTemplate()
-
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.ui)
             implementation(libs.androidx.annotation)
-        }
-        val androidxShapeSupportedMain by creating {
-            dependsOn(commonMain.get())
-            dependencies {
-                implementation(libs.androidx.graphics.shapes)
-                implementation(libs.androidx.collection)
-            }
-        }
-        val webMain by creating {
-            dependsOn(commonMain.get())
-        }
-
-        jsMain {
-            dependsOn(webMain)
-        }
-
-        wasmJsMain {
-            dependsOn(webMain)
-        }
-
-        androidMain {
-            dependsOn(androidxShapeSupportedMain)
-        }
-
-        jvmMain {
-            dependsOn(androidxShapeSupportedMain)
-        }
-
-        appleMain {
-            dependsOn(androidxShapeSupportedMain)
         }
     }
 }
