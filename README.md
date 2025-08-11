@@ -38,6 +38,9 @@ implementation("com.adamglin:compose-continuous-rounded-corner-shape:$version")
 3. [x] Desktop (JVM)
 4. [x] JS/Wasm (Support from 1.0.4)
 
+wasm sample https://adamglin0.github.io/compose-continuous-rounded-corner-shape/sample/
+
+
 > [!IMPORTANT]  
 > Before v1.0.4, you can still use ContinuousRoundedCornerShape in commonMain, but the smooth parameter on the JS/Wasm side will be ignored.
 
