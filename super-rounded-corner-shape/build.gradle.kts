@@ -51,6 +51,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.androidx.graphics.shapes)
+            implementation(libs.androidx.collection)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.ui)
