@@ -16,6 +16,7 @@ Provide the ability in **Compose Multiplatform** to create **ContinuousRoundedCo
 
 | `compose-continuous-rounded-shape` | CMP   | Kotlin    |
 |------------------------------------|-------|-----------|
+| 1.0.4                              | 1.8.2 | 2.2.0     |
 | 1.0.3                              | 1.8.2 | 2.2.0     |
 | 1.0.2                              | 1.8.2 | 2.2.0     |
 | 1.0.1                              | 1.8.1 | 2.1.21    |
@@ -35,10 +36,10 @@ implementation("com.adamglin:compose-continuous-rounded-corner-shape:$version")
 1. [x] Android
 2. [x] iOS
 3. [x] Desktop (JVM)
-4. [ ] JS/Wasm (now using RoundedCornerShape compatibility, waiting androidx-graphics-shapes support web target. )
+4. [x] JS/Wasm (Support from 1.0.4)
 
 > [!IMPORTANT]  
-> You can still use ContinuousRoundedCornerShape in commonMain, but the smooth parameter on the JS/Wasm side will be ignored.
+> Before v1.0.4, you can still use ContinuousRoundedCornerShape in commonMain, but the smooth parameter on the JS/Wasm side will be ignored.
 
 ## Use
 
