@@ -6,7 +6,6 @@ pluginManagement {
     }
 }
 
-@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositories {
         google()
@@ -14,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "compose-super-rounded-corner-shape"
-include(":super-rounded-corner-shape")
+rootProject.name = "compose-continuous-rounded-corner-shape"
+include(":lib")
 // sample apps
 include(":sample:compose-app")

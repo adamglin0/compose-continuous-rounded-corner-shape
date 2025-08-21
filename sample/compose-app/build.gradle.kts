@@ -68,7 +68,7 @@ kotlin {
             implementation(compose.uiUtil)
             implementation(compose.material3)
             implementation(compose.components.uiToolingPreview)
-            implementation(project(":super-rounded-corner-shape"))
+            implementation(project(":lib"))
         }
 
         desktopMain.dependencies {
