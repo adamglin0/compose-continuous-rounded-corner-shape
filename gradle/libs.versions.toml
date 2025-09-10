@@ -5,7 +5,7 @@ androidMinSdk = "28"
 androidTargetSdk = "35"
 androidGradlePlugin = "8.11.1"
 #androidx
-androidxActivity = "1.10.1"
+androidxActivity = "1.11.0"
 androidxAppCompat = "1.7.1"
 androidxMacroBenchmark = "1.4.0"
 androidxAnnotation = "1.9.1"
