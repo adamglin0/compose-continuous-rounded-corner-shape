@@ -11,6 +11,11 @@ plugins {
     alias(libs.plugins.binaryCompatibilityValidator)
 }
 
+group = "com.adamglin"
+version = "1.0.5"
+
+val artifactId = "compose-continuous-rounded-corner-shape"
+
 kotlin {
     androidLibrary {
         namespace = "com.adamglin.composecontinuousroundedcornershape"
@@ -62,9 +67,9 @@ kotlin {
 
 mavenPublishing {
     coordinates(
-        groupId = "com.adamglin",
-        artifactId = "compose-continuous-rounded-corner-shape",
-        version = "1.0.5"
+        groupId = group.toString(),
+        artifactId = artifactId,
+        version = version.toString()
     )
     pom {
         name.set("compose-continuous-rounded-corner-shape")
