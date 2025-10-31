@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.adamglin"
-version = "1.0.5"
+version = "1.0.6"
 
 val artifactId = "compose-continuous-rounded-corner-shape"
 
